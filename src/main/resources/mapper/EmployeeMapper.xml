@@ -2,10 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!--选择工作区-->
-<mapper namespace="mybatis.EmployeeMapper">
-    <!--设置为一标示，配对好返回类型。-->
-    <select id="selectEmp" resultType="mybatis.bean.Employee">
+<!--选择工作区，如果为接口代理查询，则要填入接口的全类名-->
+<mapper namespace="mybatis.dao.EmployeeMapper">
+    <!--设置为一标示，动态接口代理查询时候，可以填入接口方法名-->
+    <!--配对好返回类型。-->
+    <!--<select id="selectEmp" resultType="mybatis.bean.Employee">-->
+    <select id="getEmployeeById" resultType="mybatis.bean.Employee">
         select * from tbl_employee where id = #{id}
     </select>
 </mapper>
