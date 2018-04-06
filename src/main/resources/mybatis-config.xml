@@ -9,6 +9,7 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
+        <!--别名处理，在Mapper映射文件中就直接写别名就行-->
         <typeAlias type="mybatis.bean.Employee" alias="Employee" ></typeAlias>
     </typeAliases>
     <environments default="development">
