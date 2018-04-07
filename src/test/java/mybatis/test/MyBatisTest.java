@@ -89,4 +89,29 @@ public class MyBatisTest {
         }
     }
 
+    //增删改查测试
+    @Test
+    public void test3() {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            //添加
+            Employee employee = new Employee(null, "Joke", "joke@email.com", "1");
+            mapper.addEmp(employee);
+
+            //修改
+//            Employee employee = new Employee(1, "Alon", "Alon@email.com", "1");
+//            mapper.addEmp(employee);
+
+            //删除
+//            mapper.deleteEmpById(3);
+
+            //提交数据，使之生效
+            sqlSession.commit();
+        }finally {
+            sqlSession.close();
+        }
+    }
+
 }

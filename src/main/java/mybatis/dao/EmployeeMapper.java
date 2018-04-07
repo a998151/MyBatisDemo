@@ -8,5 +8,9 @@ import mybatis.bean.Employee;
  * 在Mapper 配置文件中工作地区要指定为接口的全类名
  */
 public interface EmployeeMapper {
+
     Employee getEmployeeById(Integer id);
+    boolean addEmp (Employee employee);
+    boolean updateEmp (Employee employee);
+    boolean deleteEmpById (Integer id);
 }
