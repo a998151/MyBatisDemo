@@ -2,6 +2,7 @@ package mybatis.test;
 
 import mybatis.bean.Employee;
 import mybatis.dao.EmployeeMapper;
+import mybatis.dao.EmployeeMapperAnnotation;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -63,6 +64,25 @@ public class MyBatisTest {
             Employee employee = mapper.getEmployeeById(1);
             System.out.println(employee);
             logger.info(mapper);                //查看对象是否为代理对象，带有 "Proxy@xxx" 字样
+        }finally {
+            //关闭资源
+            sqlSession.close();
+        }
+    }
+
+
+    //基于注解的Mapper
+    @Test
+    public void test2() {
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            //Mapper为接口类型，通过在接口上用注解写入需要用到 SQL 语句
+            //之后再和全局配置文件绑定，之后也会创建代理对象
+            EmployeeMapperAnnotation mapper = sqlSession.getMapper(EmployeeMapperAnnotation.class);
+            Employee employee = mapper.getEmployeeById(2);
+            logger.info(employee);
+            logger.info(mapper);
         }finally {
             //关闭资源
             sqlSession.close();

@@ -1,5 +1,7 @@
 package mybatis.bean;
 
+import org.apache.ibatis.type.Alias;
+
 /**
  * Created by ALemon on 2018/4/5.
  */
