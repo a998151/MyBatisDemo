@@ -19,6 +19,12 @@ public class Employee {
         this.gender = gender;
     }
 
+    public Employee(String lastName, String email, String gender) {
+        this.lastName = lastName;
+        this.email = email;
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

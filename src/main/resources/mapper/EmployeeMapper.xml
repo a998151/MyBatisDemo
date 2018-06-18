@@ -3,15 +3,32 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--选择工作区，如果为接口代理查询，则要填入接口的全类名-->
+<!-- id 和 JavaMapper 接口中的方法名字相同，则实现方法绑定 -->
 <mapper namespace="mybatis.dao.EmployeeMapper">
-    <!--设置为一标示，动态接口代理查询时候，可以填入接口方法名-->
-    <!--配对好返回类型。之前在全局配置文件中设置过别名处理，所以此处直接填写别名就行，不用填全类名-->
-    <select id="getEmployeeById" resultType="Employee">
-        select * from tbl_employee where id = #{id}
+
+    <select id="selectEmp" resultType="Employee">
+        SELECT * FROM tbl_employee WHERE id = #{id}
     </select>
 
+    <!--设置为一标示，动态接口代理查询时候，可以填入接口方法名-->
+    <!--配对好返回类型。之前在全局配置文件中设置过别名处理，所以此处直接填写别名就行，不用填全类名-->
+    <!--#{id} 表示从传过来的参数中取出 id 的值-->
+    <select id="getEmployeeById" resultType="Employee">
+        SELECT * FROM tbl_employee WHERE id = #{id}
+    </select>
+
+    <!--多参数-->
+    <select id="getEmployeeByIdAndLastName" resultType="Employee">
+        SELECT * FROM tbl_employee WHERE id=#{id} AND last_name=#{lastName}
+    </select>
+    <select id="getEmployeeByMap" resultType="Employee">
+        SELECT * FROM tbl_employee WHERE id=#{id} AND last_name=#{lastName}
+    </select>
+
+
     <!--插入数据-->
-    <insert id="addEmp">
+    <!--keyProperty 对应JavaBean 的主键值-->
+    <insert id="addEmp" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tbl_employee(last_name,gender,email) VALUES (#{lastName},#{gender},#{email})
     </insert>
 

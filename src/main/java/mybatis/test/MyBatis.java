@@ -13,8 +13,6 @@ import java.io.InputStream;
  * Created by ALemon on 2018/4/5.
  */
 public class MyBatis {
-
-
     public static void test() throws IOException {
     }
 }

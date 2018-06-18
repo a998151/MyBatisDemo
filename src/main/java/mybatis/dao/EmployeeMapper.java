@@ -1,6 +1,9 @@
 package mybatis.dao;
 
 import mybatis.bean.Employee;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * Created by ALemon on 2018/4/5.
@@ -10,7 +13,14 @@ import mybatis.bean.Employee;
 public interface EmployeeMapper {
 
     Employee getEmployeeById(Integer id);
-    boolean addEmp (Employee employee);
-    boolean updateEmp (Employee employee);
-    boolean deleteEmpById (Integer id);
+
+    boolean addEmp(Employee employee);
+
+    boolean updateEmp(Employee employee);
+
+    boolean deleteEmpById(Integer id);
+
+    Employee getEmployeeByIdAndLastName(@Param("id") Integer id, @Param("lastName") String lastName);
+
+    Employee getEmployeeByMap(Map<String,Object> map);
 }
