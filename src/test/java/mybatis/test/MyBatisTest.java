@@ -13,6 +13,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -147,4 +148,21 @@ public class MyBatisTest {
         }
     }
 
+    //返回结果集
+    @Test
+    public void test4(){
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+            List<Employee> empLists = mapper.getEmpByLastName("%阿%");
+            for (Employee emp : empLists){
+                System.out.println(emp);
+            }
+
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
 }

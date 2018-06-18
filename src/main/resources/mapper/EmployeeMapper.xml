@@ -41,4 +41,11 @@
     <delete id="deleteEmpById">
         DELETE FROM tbl_employee WHERE id = #{id}
     </delete>
+
+
+    <!--获取结果集-->
+    <!--返回结果如果是结果集，要写集合里面的具体类型-->
+    <select id="getEmpByLastName" resultType="Employee">
+        SELECT * FROM tbl_employee WHERE last_name LIKE #{lastName}
+    </select>
 </mapper>
