@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--选择工作区，如果为接口代理查询，则要填入接口的全类名-->
+<!-- id 和 JavaMapper 接口中的方法名字相同，则实现方法绑定 -->
+<mapper namespace="mybatis.dao.EmployeeMapperPlus">
+    <resultMap id="MyEmp" type="Employee">
+        <id column="id" property="id" />
+        <result column="last_name" property="lastName" />
+    </resultMap>
+    <select id="getEmpById" resultMap="MyEmp" >
+        SELECT * FROM tbl_employee WHERE  id = #{id}
+    </select>
+
+</mapper>

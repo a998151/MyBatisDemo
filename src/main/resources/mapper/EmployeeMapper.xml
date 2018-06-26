@@ -48,4 +48,9 @@
     <select id="getEmpByLastName" resultType="Employee">
         SELECT * FROM tbl_employee WHERE last_name LIKE #{lastName}
     </select>
+
+    <!--返回结果是结果集，用 Map 包装-->
+    <select id="getEmpByLastNameLikeReturnMap" resultType="Employee">
+        SELECT * FROM tbl_employee WHERE last_name LIKE  #{lastName}
+    </select>
 </mapper>

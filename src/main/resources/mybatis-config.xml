@@ -10,6 +10,7 @@
 
         <!--开启SQL 语句日子打印-->
         <setting name="logImpl" value="STDOUT_LOGGING" />
+
     </settings>
 
     <typeAliases>
@@ -34,5 +35,6 @@
     <mappers>
         <mapper resource="mapper/EmployeeMapper.xml"/>
         <mapper class="mybatis.dao.EmployeeMapperAnnotation" />
+        <mapper resource="mapper/EmployeeMapperPlus.xml" />
     </mappers>
 </configuration>

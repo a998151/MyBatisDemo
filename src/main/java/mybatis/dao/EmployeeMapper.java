@@ -1,6 +1,7 @@
 package mybatis.dao;
 
 import mybatis.bean.Employee;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -26,4 +27,7 @@ public interface EmployeeMapper {
     Employee getEmployeeByMap(Map<String,Object> map);
 
     List<Employee> getEmpByLastName(String lastName);
+
+    @MapKey("id")
+    Map<Integer , Employee> getEmpByLastNameLikeReturnMap(String lastName);
 }

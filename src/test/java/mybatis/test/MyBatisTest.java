@@ -3,6 +3,7 @@ package mybatis.test;
 import mybatis.bean.Employee;
 import mybatis.dao.EmployeeMapper;
 import mybatis.dao.EmployeeMapperAnnotation;
+import mybatis.dao.EmployeeMapperPlus;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -148,7 +149,7 @@ public class MyBatisTest {
         }
     }
 
-    //返回结果集
+    //返回结果集 ，list  map
     @Test
     public void test4(){
         SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
@@ -156,10 +157,30 @@ public class MyBatisTest {
         try {
             EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
             List<Employee> empLists = mapper.getEmpByLastName("%阿%");
+            Map<Integer, Employee> empMap = mapper.getEmpByLastNameLikeReturnMap("%阿%");
+            System.out.println(empMap.get(4));
+
+
             for (Employee emp : empLists){
                 System.out.println(emp);
             }
 
+            sqlSession.commit();
+        } finally {
+            sqlSession.close();
+        }
+    }
+
+    //自定义返回结果Map
+    @Test
+    public void test5(){
+        SqlSessionFactory sqlSessionFactory = getSqlSessionFactory();
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        try {
+            EmployeeMapperPlus mapper = sqlSession.getMapper(EmployeeMapperPlus.class);
+            Employee employee = mapper.getEmpById(1);
+
+            System.out.println(employee);
             sqlSession.commit();
         } finally {
             sqlSession.close();
